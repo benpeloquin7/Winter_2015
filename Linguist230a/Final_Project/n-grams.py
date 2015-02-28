@@ -1,7 +1,8 @@
 #:--------n-grams.py-----------#
 from random import randint
+from math import trunc
 
-nSize = 12
+nSize = 7
 
 #tokenized text
 tokens = []
@@ -30,14 +31,15 @@ for i in range(0, len(tokens) - nSize - 1):
 		gram_map[tokens[i]].append(temp)
 
 #Set random number generator
-#seed(0)
+#random.seed(0)
 start_key = "the"
 current_key = start_key
 
 sent = ""
 sent += "...%s " % start_key 
 
-for i in range(0,10):
+#Generate n-gram tweet
+for i in range(0, trunc(140 / nSize)):
 	#Randomly select a vector of words in map
 	random_value = randint(0, len(gram_map[current_key])) - 1
         next_tokens = gram_map[current_key][random_value]
@@ -56,4 +58,3 @@ for i in range(0,10):
 sent += "..."
 
 print(sent)
-
