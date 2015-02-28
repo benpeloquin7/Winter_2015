@@ -10,5 +10,6 @@ fi
 
 csvfix order -f 4 $path$tweets | grep -v "RT" |\
 sed -E 's/http.+\b//g' | sed -E 's/@.+\b//g' |\
-tr -d '\"' | tr -d '\n' | tr [A-Z] [a-z] > cleantest.txt
+tr -d '\"' | tr -d '\n' | tr [A-Z] [a-z] | tr '  +' ' ' |\
+iconv -c -f utf-8 -t ascii > cleantest.txt
 
